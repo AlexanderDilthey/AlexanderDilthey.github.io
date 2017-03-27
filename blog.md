@@ -10,7 +10,7 @@ title: Blog | Alexander Dilthey
   {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
   {% if year != y %}
     {% assign year = y %}
-  **{{ y }}**
+    <h3>{{ y }}</h3>
   {% endif %}
   <li class="listing-item">
     <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
