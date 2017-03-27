@@ -3,16 +3,19 @@ layout: default
 title: Blog archive
 ---
 <div class="page-content wc-container">
-  <h1>Blog Archive</h1>  
-  {% for post in site.posts %}
-  	{% capture currentyear %}{{post.date | date: "%Y"}}{% endcapture %}
-  	{% if currentyear != year %}
-    	{% unless forloop.first %}</ul>{% endunless %}
-    		<h5>{{ currentyear }}</h5>
-    		<ul class="posts">
-    		{% capture year %}{{currentyear}}{% endcapture %}
-  		{% endif %}
-    <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
-    {% if forloop.last %}</ul>{% endif %}
+  <h1>Blog</h1>  
+
+<ul class="listing">
+{% for post in site.posts %}
+  {% capture y %}{{post.date | date:"%Y"}}{% endcapture %}
+  {% if year != y %}
+    {% assign year = y %}
+    <li class="listing-seperator">{{ y }}</li>
+  {% endif %}
+  <li class="listing-item">
+    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+  </li>
 {% endfor %}
+</ul>
 </div>
